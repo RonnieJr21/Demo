@@ -1,14 +1,12 @@
-FROM ubuntu
+FROM ubuntu:latest
 
-RUN apt-get update -y &&\
-    apt-get install -y python-pip python-dev
+RUN apt-get update -y && apt-get install -y python3-pip
 
 WORKDIR /app
 
-COPY ./requirements.txt /app
+COPY requirements.txt /app/
 
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . .
-
-CMD [ "python", "server.py" ]
+CMD [ "python3", "./server.py" ]
